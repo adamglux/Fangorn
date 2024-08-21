@@ -3,12 +3,13 @@
 #' @return
 #'
 #' @import ggplot2
+#' @import basetheme
 #' @export
 #'
 #'
 #'
 adams.plot <- function() {
-  theme(
+  ggplot2::theme(
 
     # add border 1)
     panel.border = element_rect(colour = "grey4", fill = NA, linetype = 1),
@@ -32,3 +33,37 @@ adams.plot <- function() {
 
   )
 }
+
+
+#' Base Plot
+#'
+#' @param theme
+#'
+#' @export
+#'
+#' @note
+#' default for theme = TRUE
+#'
+base.plot <- function(theme = TRUE) {
+  adamplot <- basetheme("clean")
+  adamplot$palette <- palette("Okabe-Ito")  # numbered colors - shades of grey
+  adamplot$bg  <- "white"                         # some colors
+  adamplot$fg  <- "gray20"                       # some colors
+  adamplot$col.main <- "grey4"                    # some colors
+  adamplot$col.axis <- "grey4"                   # some colors
+  adamplot$col.lab  <- "grey4"                   # some colors
+  adamplot$family   <-  "mono"                    # change font
+  # adamplot$lab      <-  c(5,5,7)                # num ticks on axes
+  adamplot$cex.axis <-  0.8                       # smaller axis labels
+  adamplot$las      <-  1                         # 1 for always horizontal axis labels
+  adamplot$rect.border <- "grey4"                 # box around the plot
+  adamplot$rect.lwd    <- 1                       # ticker border
+  adamplot$font.main <-  1                        # font for main title
+  adamplot$pch <- "."                              # symbol option
+  adamplot$cex <- 0.75
+
+  if (theme == FALSE) {
+    return(basetheme("clean"))
+  } else {return(basetheme(adamplot))}
+}
+
